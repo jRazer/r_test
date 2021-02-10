@@ -9,12 +9,13 @@ tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 
 sudo -u postgres psql -U postgres -d postgres -c "alter user postgres with password 'pass';"
+sed -i 's/peer/md5/g' /etc/postgresql/12/main/pg_hba.conf
+service postgresql restart
 
 wget https://raw.githubusercontent.com/jRazer/r_test/main/up.sql
-
 wget https://raw.githubusercontent.com/jRazer/r_test/main/helloworld_linux_amd64
 
-export PGPASSWORD='pass'; psql -h 'localhost' -U 'postgres' -d 'postgres' < up.sql
+psql "host=localhost port=5432 dbname=postgres user=postgres password=pass" < up.sql
 
 mv helloworld_linux_amd64 /opt
 
