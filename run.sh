@@ -16,7 +16,7 @@ wget https://raw.githubusercontent.com/jRazer/r_test/main/up.sql
 wget https://raw.githubusercontent.com/jRazer/r_test/main/helloworld_linux_amd64
 
 psql "host=localhost port=5432 dbname=postgres user=postgres password=pass" < up.sql
-
+chmod +x helloworld_linux_amd64
 mv helloworld_linux_amd64 /opt
 
-cd /opt && /usr/local/go/bin/go run ./helloworld_linux_amd64
+cd /opt && ./helloworld_linux_amd64
