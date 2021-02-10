@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt update
-apt install postgresql postgresql-contrib
+apt install postgresql postgresql-contrib -y
 wget https://golang.org/dl/go1.15.8.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
