@@ -2,6 +2,8 @@
 
 apt update
 apt install postgresql postgresql-contrib -y
+pg_ctlcluster 12 main start
+
 wget https://golang.org/dl/go1.15.8.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
@@ -16,4 +18,4 @@ export PGPASSWORD='pass'; psql -h 'localhost' -U 'postgres' -d 'postgres' < up.s
 
 mv helloworld_linux_amd64 /opt
 
-cd/opt && go run ./helloworld_linux_amd64
+cd /opt && /usr/local/go/bin/go run ./helloworld_linux_amd64
