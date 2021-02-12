@@ -13,7 +13,15 @@ sed -i 's/peer/md5/g' /etc/postgresql/12/main/pg_hba.conf
 service postgresql restart
 
 wget https://raw.githubusercontent.com/jRazer/r_test/main/up.sql
+wget https://raw.githubusercontent.com/jRazer/r_test/main/backup.sh
 wget https://raw.githubusercontent.com/jRazer/r_test/main/helloworld_linux_amd64
+
+chmod +x backup.sh
+mkdir /backup
+
+crontab -l > mycron
+echo "3 0 * * * /root/backup.sh" >> mycron
+crontab mycron
 
 psql "host=localhost port=5432 dbname=postgres user=postgres password=pass" < up.sql
 chmod +x helloworld_linux_amd64
